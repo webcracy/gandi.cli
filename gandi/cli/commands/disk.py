@@ -104,7 +104,7 @@ def detach(gandi, resource, background, force):
     """
     resource = tuple(set(resource))
     if not force:
-        proceed = click.confirm('Are you sure to detach %s?' %
+        proceed = click.confirm('Are you sure you want to detach %s?' %
                                 ', '.join(resource))
         if not proceed:
             return
@@ -132,7 +132,7 @@ def attach(gandi, disk, vm, background, force):
     vm can be a vm name, or ID
     """
     if not force:
-        proceed = click.confirm("Are you sure to attach disk '%s' to vm '%s'" %
+        proceed = click.confirm("Are you sure you want to attach disk '%s' to vm '%s'" %
                                 (disk, vm))
         if not proceed:
             return
@@ -140,8 +140,8 @@ def attach(gandi, disk, vm, background, force):
     disk_info = gandi.disk.info(disk)
     attached = disk_info.get('vms_id', False)
     if attached and not force:
-        gandi.echo('This is disk is still attached')
-        proceed = click.confirm('Are you sure to detach %s?' % disk)
+        gandi.echo('This disk is still attached')
+        proceed = click.confirm('Are you sure you want to detach %s?' % disk)
 
         if not proceed:
             return
@@ -206,7 +206,7 @@ def delete(gandi, resource, force, background):
     resource = tuple(set(resource))
     if not force:
         disk_info = "'%s'" % ', '.join(resource)
-        proceed = click.confirm('Are you sure to delete disk %s?' % disk_info)
+        proceed = click.confirm('Are you sure you want to delete disk %s?' % disk_info)
 
         if not proceed:
             return
